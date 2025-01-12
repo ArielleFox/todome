@@ -8,6 +8,11 @@ modified version of this code,
 
 Thank You Very Much.
 
+# USAGE
+```bash
+todome
+```
+
 # INSTALLATION
 
 Just run:
