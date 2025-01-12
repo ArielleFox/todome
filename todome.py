@@ -1,4 +1,6 @@
 #!/usr/bin/env python3.14
+from dataclasses import dataclass
+from typing import List, Tuple
 from datetime import date, datetime
 import json
 import os
@@ -9,6 +11,8 @@ from libs.colorLib import * # CUSTOM COLORS
 from libs.tutorials import development_tutorial
 from libs.securityLib import wait_for_enter
 from libs.animationLib import *
+from libs.weatherLib import get_weather
+from libs.settings import load_location
 
 
 # CONSTANT VARIABLES
@@ -28,6 +32,7 @@ def get_weekday() -> str:
 	today = datetime.now().strftime('%A')
 	return f"'{color_magenta_bg(today)}'"
 
+
 # SAVEFILE LOGIC
 def load_todos() -> list:
 	global username
@@ -38,22 +43,42 @@ def load_todos() -> list:
 		return [(f'Welcome {color_yellow_fg(username)}, to TODOME', True), (f'''type t '<{color_yellow_fg("2")}>' to togle me on''', False), (f'''type r '<{color_yellow_fg("2")}>' to remove checkbox above⬆''', False)]
 
 todos = load_todos()
-def save_animation() -> None:
-	print(welcome_screen(False))
-	list_todos(True)
-	print(f"  💾 {color_pink_fg('Saving')} {color_pink_fg('.')}")
-	time.sleep(0.1)
-	clear_screen()
-	print(welcome_screen(False))
-	list_todos(True)
-	print(f"  💾 {color_pink_fg('Sav')}{color_pink_fg('ing')} {color_pink_fg('..')}")
-	time.sleep(0.1)
-	clear_screen()
-	print(welcome_screen(False))
-	list_todos(True)
-	print(f"  💾 {color_pink_fg('Saving ...')}")
-	time.sleep(0.1)
-	clear_screen()
+
+
+@dataclass
+class AnimationConfig:
+    frames: List[Tuple[str, str]]
+    delay: float = 0.01
+    icon: str = "💾"
+    spacing: str = "  "
+
+def save_animation(config: AnimationConfig = None) -> None:
+    """
+    Display an animated saving indicator.
+
+    Args:
+        config: Optional AnimationConfig object for customization
+    """
+    if config is None:
+        config = AnimationConfig(
+            frames=[
+                ('Saving', '.         |'),
+                ('Saving', '..        |'),
+                ('Saving', '...       |'),
+                ('Saving', '....      |'),
+                ('Saving', '.....     |'),
+                ('Saving', '......    |'),
+                ('Saving', '.......   |'),
+                ('Saving', '........  |'),
+                ('Saving', '......... |')
+            ]
+        )
+    for text, dots in config.frames:
+        clear_screen()
+        save_msg = f"{config.spacing}{config.icon} {color_pink_fg(text)} {color_pink_fg(dots)}"
+        print(save_msg)
+        time.sleep(config.delay)
+    clear_screen()
 
 def save_todos() -> None:
 	with open(TODO_FILE, 'w') as f:
