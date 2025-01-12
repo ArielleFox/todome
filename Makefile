@@ -13,8 +13,7 @@ install:
 	#echo "" > ~/.config/todome/config.yaml
 
 deinstall:
-	rm  ~/.local/bin/todome
-	rm ~/.config/todome/config.yaml
+	rm  ~/.local/bin/todome ~/.config/todome/config.yaml
 
 reinstall: clean build deinstall install clean
 
