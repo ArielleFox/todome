@@ -45,8 +45,4 @@ LOCATION
 Current Supported STABLE Plugins are:
 	...
 Current Experimental Plugins are:
-	- WeekList	<example plugin | not finished yet/ active development>
-	1. ATTENTION NO SAVEFILE IS YET IMPLAMENTED
-	2. ATTENTION DEVELOPMENT STATE = CONCEPT DESIGNING
-	3. ATTENTION DOES NOT WRITE SAVEFILE YET
-	4. ATTENTION DOES NOT READ SAVEFILE YET
+	- WeekList | alpha.py
