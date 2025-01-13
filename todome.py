@@ -31,7 +31,7 @@ def update_time() -> str:
 	day = get_date.strftime("%d")
 	month = get_date.strftime("%m")
 	year = get_date.strftime("%Y")
-	result = color_yellow_fg(day) + '/' + color_yellow_fg(month) + '/' + color_yellow_fg(year) + '	[' + color_red_fg(current_clock) + ']'
+	result = color_yellow_fg(day) + '/' + color_yellow_fg(month) + '/' + color_yellow_fg(year) + '		[' + color_red_fg(current_clock) + ']'
 	return result
 
 def get_weekday() -> str:
