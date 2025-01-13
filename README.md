@@ -8,7 +8,6 @@ modified version of this code,
 
 Thank You Very Much.
 
-Depends on gum https://github.com/charmbracelet/gum
 
 # USAGE
 ```bash
