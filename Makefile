@@ -4,10 +4,12 @@ venv:
 	python3.13 -m venv venv
 
 build:
+	mkdir -p ~/.config/todome/
 	pyinstaller todome.py --onefile
 	pyinstaller alpha.py --onefile
 	cp ./dist/todome .
-	cp ./dist/alpha .
+	mv ./dist/alpha  ~/.config/todome/alpha
+	chmod +x  ~/.config/todome/alpha
 
 clean:
 	rm -rf ./dist ./build ./*.spec todome __pycache__ *.tar ./libs/__pycache__ ./plugins/__pycache__
@@ -17,7 +19,6 @@ install:
 	mkdir -p ~/.config/todome/
 alpha:
 	mkdir -p home/arielle/.config/todome/
-	mv alpha ~/.config/todome/alpha
 	#echo "" > ~/.config/todome/config.yaml
 
 deinstall:
