@@ -1,8 +1,6 @@
 #!/usr/bin/env python3.14
 
-import sys
-import requests
-import time
+import sys, requests, time
 from typing import Optional
 
 def get_weather(location: Optional[str] = None) -> str:

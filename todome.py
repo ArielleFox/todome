@@ -1,33 +1,39 @@
 #!/usr/bin/env python3.14
+import json, os, sys, time
 from dataclasses import dataclass
 from typing import List, Tuple
 from datetime import date, datetime
-import json
-import os
-import sys
-import time
 from pathlib import Path
 from libs.colorLib import * # CUSTOM COLORS
 from libs.tutorials import development_tutorial
 from libs.securityLib import wait_for_enter
 from libs.animationLib import *
 from libs.weatherLib import get_weather
-from libs.settings import load_location
-
+from libs.settings import load_location, load_time_format
+from libs.timeLib import get_current_time
 
 # CONSTANT VARIABLES
 TODO_FILE = Path.home() / '.todo.me'
 username = os.environ.get('USER') or os.environ.get('USERNAME')
 ending, checked, unchecked = "\033[0m", " - [x] ", " - [ ] "
+time_format = load_time_format(os.getenv('USER', ''))
 
 # TIME LOGIC
+def clock(time_format: str) -> str:
+	cache_bool = True if time_format == 'True' else False
+	return get_current_time(switch=cache_bool)
+
+current_clock: str = clock(time_format)
+
 def update_time() -> str:
+	global current_clock
 	get_date = date.today()
 	day = get_date.strftime("%d")
 	month = get_date.strftime("%m")
 	year = get_date.strftime("%Y")
-	result = color_yellow_fg(day) + '/' + color_yellow_fg(month) + '/' + color_yellow_fg(year)
+	result = color_yellow_fg(day) + '/' + color_yellow_fg(month) + '/' + color_yellow_fg(year) + '[' + color_red_fg(current_clock) + ']'
 	return result
+
 def get_weekday() -> str:
 	today = datetime.now().strftime('%A')
 	return f"'{color_magenta_bg(today)}'"

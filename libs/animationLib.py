@@ -1,6 +1,5 @@
 from pathlib import Path
-import tempfile
-import os
+import tempfile, os
 from typing import Optional
 from .colorLib import *
 from .settings import load_location
