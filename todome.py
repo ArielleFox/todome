@@ -1,22 +1,24 @@
-#!/usr/bin/env python3.14
+#!/usr/bin/env python3.13
 import json, os, sys, time
 from dataclasses import dataclass
 from typing import List, Tuple
 from datetime import date, datetime
 from pathlib import Path
-from libs.colorLib import * # CUSTOM COLORS
+from libs.colorLib import *
 from libs.tutorials import development_tutorial
 from libs.securityLib import wait_for_enter
 from libs.animationLib import *
 from libs.weatherLib import get_weather
 from libs.settings import load_location, load_time_format
 from libs.timeLib import get_current_time
+from plugins.week_list import generate_grid
 
 # CONSTANT VARIABLES
 TODO_FILE = Path.home() / '.todo.me'
 username = os.environ.get('USER') or os.environ.get('USERNAME')
 ending, checked, unchecked = "\033[0m", " - [x] ", " - [ ] "
 time_format = load_time_format(os.getenv('USER', ''))
+
 
 # TIME LOGIC
 def clock(time_format: str) -> str:
@@ -188,6 +190,11 @@ def comando_check(cmd: str) -> None:
 		list_todos(True)
 	elif cmd == 'add' or cmd == 'a':
 		add_Todo()
+	elif cmd == 'week' or cmd == 'w':
+		#generate_grid()
+		os.system(f'home/{username}/.config/todome/alpha')
+		print(welcome_screen(False))
+		list_todos(True)
 	elif cmd == 'save' or cmd == 's':
 		save_animation()
 		save_todos()
@@ -200,6 +207,7 @@ def comando_check(cmd: str) -> None:
 		clear_screen(), print(welcome_screen(False)), list_todos(False)
 		print(f"\n{color_magenta_bg('Available commands:')}\n")
 		print(f"{color_yellow_fg('list')} (l)    {color_green_fg('-')} Show all todos")
+		print(f"{color_yellow_fg('week')} (w)    {color_green_fg('-')} Show all weekend todos {color_darkgreen_bg('PLUGIN')}")
 		print(f"{color_yellow_fg('add')} (a)     {color_green_fg('-')} Add a new todo")
 		print(f"{color_yellow_fg('toggle')} <n>  {color_green_fg('-')} Toggle todo status (t <n>)")
 		print(f"{color_yellow_fg('remove')} <n>  {color_green_fg('-')} Remove todo (r <n>)")

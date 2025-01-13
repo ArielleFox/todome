@@ -8,6 +8,8 @@ modified version of this code,
 
 Thank You Very Much.
 
+Depends on gum https://github.com/charmbracelet/gum
+
 # USAGE
 ```bash
 todome
@@ -28,3 +30,23 @@ Just run:
 make deinstall
 ```
 The binary will removed from ~/.local/bin/todome .
+
+
+# Configuration Manual
+
+TIME	
+	You have the option to set between Military Time & AM/PM
+LOCATION
+	You have the option to set your location for the weather api
+
+
+# Plugins
+
+Current Supported STABLE Plugins are:
+	...
+Current Experimental Plugins are:
+	- WeekList	<example plugin | not finished yet/ active development>
+	1. ATTENTION NO SAVEFILE IS YET IMPLAMENTED
+	2. ATTENTION DEVELOPMENT STATE = CONCEPT DESIGNING
+	3. ATTENTION DOES NOT WRITE SAVEFILE YET
+	4. ATTENTION DOES NOT READ SAVEFILE YET
