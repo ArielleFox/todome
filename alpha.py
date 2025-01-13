@@ -1,13 +1,19 @@
 import curses
 import sqlite3
 from datetime import datetime
-import sys, re, os
-
-username = os.environ.get('USER') or os.environ.get('USERNAME')
+import sys
+import re
+import os
 
 class TodoManager:
-    def __init__(self, db_path=f"/home/{username}/.todos.db"):
-        self.db_path = db_path
+    def __init__(self):
+        # Create .todo directory in user's home
+        self.todo_dir = os.path.join(os.path.expanduser('~'), '.todo')
+        if not os.path.exists(self.todo_dir):
+            os.makedirs(self.todo_dir)
+
+        # Store database in the .todo directory
+        self.db_path = os.path.join(self.todo_dir, 'todos.db')
         self.setup_database()
         self.days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
         self.current_day_index = datetime.now().weekday()
@@ -83,7 +89,6 @@ class TodoManager:
         """Get the first incomplete task for the current day, sorted by time."""
         incomplete_tasks = [task for _, task, completed, time_value in self.todos if not completed]
         if incomplete_tasks:
-            # Sort by time_value (already sorted in self.todos)
             return incomplete_tasks[0]
         return "No upcoming tasks"
 
