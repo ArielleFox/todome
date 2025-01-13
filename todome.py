@@ -192,7 +192,7 @@ def comando_check(cmd: str) -> None:
 		add_Todo()
 	elif cmd == 'week' or cmd == 'w':
 		#generate_grid()
-		os.system(f'home/{username}/.config/todome/alpha')
+		os.system(f'/home/{username}/.config/todome/alpha')
 		print(welcome_screen(False))
 		list_todos(True)
 	elif cmd == 'save' or cmd == 's':
