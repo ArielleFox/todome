@@ -41,7 +41,5 @@ LOCATION
 
 # Plugins
 
-Current Supported STABLE Plugins are:
-	...
-Current Experimental Plugins are:
-	- WeekList | alpha.py
+Current Supported STABLE Plugins are: ...
+Current Experimental Plugins are: - WeekList | alpha.py savefile -> $HOME/.todo/todos.db
