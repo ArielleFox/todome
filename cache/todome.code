@@ -1,4 +1,3 @@
-#!/home/ashley/Apps/todome-venv/bin/python3.13
 import json, os, sys, time
 from dataclasses import dataclass
 from typing import List, Tuple
